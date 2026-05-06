@@ -9,7 +9,7 @@ I'm a **Software Engineer (SDET)** with **6+ years of experience** in automation
 - **CI/CD Integration** (Jenkins, Maven)
 
 ### 📧 Contact Information
-- **Email**: manikandan.kunjaiyan@wissen.com
+- **Email**: maanik2019@gmail.com
 - **Location**: Bangalore, India
 
 ---
