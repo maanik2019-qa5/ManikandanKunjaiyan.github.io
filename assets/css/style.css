@@ -95,7 +95,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
 /* ==========================================
@@ -109,15 +109,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: clamp(1.8rem, 5vw, 3rem);
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: clamp(1.5rem, 3vw, 3rem);
     position: relative;
     padding-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.hero h2 {
     color: var(--white);
 }
 
@@ -134,7 +138,7 @@ h2::after {
 }
 
 h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
 }
 
 p {
@@ -159,7 +163,7 @@ a:hover {
 .navbar {
     background-color: var(--primary-color);
     color: var(--white);
-    padding: 1rem 0;
+    padding: clamp(0.75rem, 1.5vw, 1rem) 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -172,16 +176,16 @@ a:hover {
     align-items: center;
 }
 
-.nav-brand h1 {
-    font-size: 1.8rem;
+.nav-brand {
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    font-weight: 700;
     color: var(--secondary-color);
-    margin: 0;
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: clamp(1rem, 2.5vw, 2rem);
 }
 
 .nav-menu a {
@@ -190,6 +194,7 @@ a:hover {
     transition: var(--transition);
     padding: 0.5rem 0;
     border-bottom: 2px solid transparent;
+    font-size: clamp(0.95rem, 1.2vw, 1rem);
 }
 
 .nav-menu a:hover {
@@ -201,13 +206,13 @@ a:hover {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    gap: 4px;
 }
 
 .hamburger span {
     width: 25px;
     height: 3px;
     background-color: var(--white);
-    margin: 5px 0;
     border-radius: 2px;
     transition: var(--transition);
 }
@@ -218,14 +223,17 @@ a:hover {
 
 .btn {
     display: inline-block;
-    padding: 0.75rem 2rem;
+    padding: clamp(0.7rem, 1.5vw, 0.75rem) clamp(1.5rem, 3vw, 2rem);
     border-radius: 5px;
     font-weight: 600;
     transition: var(--transition);
     border: 2px solid;
     cursor: pointer;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
 .btn-primary {
@@ -238,6 +246,10 @@ a:hover {
     background-color: #2980b9;
     border-color: #2980b9;
     transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
 }
 
 .btn-secondary {
@@ -264,7 +276,7 @@ a:hover {
     background-size: cover;
     background-repeat: no-repeat;
     color: var(--white);
-    padding: 120px 20px;
+    padding: clamp(60px, 15vw, 120px) clamp(1rem, 3vw, 2rem);
     text-align: center;
     min-height: 100vh;
     display: flex;
@@ -286,14 +298,14 @@ a:hover {
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: clamp(2rem, 6vw, 4rem);
     color: var(--white);
     margin-bottom: 0.5rem;
     animation: slideDown 0.8s ease;
 }
 
 .job-title {
-    font-size: 1.8rem;
+    font-size: clamp(1.1rem, 3vw, 1.8rem);
     color: var(--secondary-color);
     margin-bottom: 0.5rem;
     font-weight: 600;
@@ -333,14 +345,14 @@ a:hover {
    ========================================== */
 
 .about {
-    padding: 80px 20px;
+    padding: clamp(40px, 10vw, 80px) clamp(1rem, 3vw, 2rem);
     background-color: var(--light-bg);
 }
 
 .about-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(1.5rem, 3vw, 3rem);
     align-items: start;
 }
 
@@ -385,14 +397,14 @@ a:hover {
    ========================================== */
 
 .skills {
-    padding: 80px 20px;
+    padding: clamp(40px, 10vw, 80px) clamp(1rem, 3vw, 2rem);
     background-color: var(--white);
 }
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: clamp(1.5rem, 2.5vw, 2rem);
 }
 
 .skill-category {
@@ -440,93 +452,121 @@ a:hover {
    ========================================== */
 
 .experience {
-    padding: 80px 20px;
-    background-color: var(--light-bg);
+    padding: clamp(40px, 10vw, 80px) clamp(1rem, 3vw, 2rem);
+    background: radial-gradient(circle at top left, rgba(52, 152, 219, 0.14), transparent 40%),
+        linear-gradient(180deg, #f9fbff 0%, #eef4fb 100%);
 }
 
-.experience-timeline {
-    max-width: 800px;
+.experience h2 {
+    color: var(--primary-color);
+}
+
+.timeline {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    gap: clamp(1.5rem, 2.5vw, 2rem);
+    max-width: 1100px;
     margin: 0 auto;
-    position: relative;
-    padding: 20px 0;
-}
-
-.experience-timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 3px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--secondary-color), var(--accent-color));
+    padding-top: 10px;
 }
 
 .timeline-item {
-    margin-bottom: 3rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+    border-radius: 22px;
+    padding: clamp(1.5rem, 2.5vw, 2rem);
+    border: 1px solid rgba(52, 73, 94, 0.1);
+    box-shadow: 0 18px 45px rgba(52, 73, 94, 0.08);
     position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-.timeline-item:nth-child(odd) .timeline-content {
-    margin-left: 0;
-    margin-right: auto;
-    padding-right: 3rem;
-    width: 48%;
-    text-align: right;
-}
-
-.timeline-item:nth-child(even) .timeline-content {
-    margin-left: auto;
-    margin-right: 0;
-    padding-left: 3rem;
-    width: 48%;
-    text-align: left;
-}
-
-.timeline-marker {
+.timeline-item::before {
+    content: '';
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
-    background-color: var(--secondary-color);
-    border: 4px solid var(--white);
-    border-radius: 50%;
-    top: 20px;
-    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
 }
 
-.timeline-content {
-    background-color: var(--white);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
+.timeline-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 55px rgba(52, 73, 94, 0.12);
 }
 
-.timeline-content:hover {
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-}
-
-.timeline-content h3 {
+.timeline-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    background: rgba(52, 152, 219, 0.12);
     color: var(--secondary-color);
-    margin-bottom: 0.5rem;
-}
-
-.timeline-content .company {
-    font-weight: 600;
-    color: var(--text-color);
-    margin-bottom: 0.25rem;
-}
-
-.timeline-content .duration {
-    font-size: 0.9rem;
-    color: #999;
+    font-weight: 700;
+    font-size: 0.95rem;
     margin-bottom: 1rem;
 }
 
-.timeline-content .description {
-    color: #666;
+.timeline-content h3 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+}
+
+.timeline-content .company {
+    font-weight: 700;
+    color: #34495e;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content ul {
+    list-style: none;
+    padding-left: 0;
+    display: grid;
+    gap: 0.85rem;
+}
+
+.timeline-content ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: #4d5f7f;
     line-height: 1.8;
+}
+
+.timeline-content ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.timeline-content p.company + ul {
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 900px) {
+    .timeline {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .experience {
+        padding: clamp(30px, 8vw, 40px) clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .timeline-item {
+        padding: clamp(1.25rem, 2vw, 1.5rem);
+    }
+
+    .timeline-date {
+        font-size: 0.9rem;
+    }
 }
 
 /* ==========================================
@@ -534,34 +574,70 @@ a:hover {
    ========================================== */
 
 .projects {
-    padding: 80px 20px;
+    padding: clamp(40px, 10vw, 80px) clamp(1rem, 3vw, 2rem);
     background-color: var(--white);
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    gap: clamp(1.5rem, 2.5vw, 2rem);
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 .project-card {
-    background-color: var(--light-bg);
-    border-radius: 8px;
+    background: linear-gradient(180deg, #ffffff 0%, #f3f9ff 100%);
+    border-radius: 18px;
     overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    padding: 2rem;
+    box-shadow: 0 18px 40px rgba(44, 62, 80, 0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border: 1px solid rgba(52, 73, 94, 0.08);
+    position: relative;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at top right, rgba(52, 152, 219, 0.18), transparent 60%);
+    pointer-events: none;
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 22px 48px rgba(44, 62, 80, 0.12);
 }
 
 .project-header {
-    border-bottom: 2px solid var(--secondary-color);
-    padding-bottom: 1rem;
+    background: linear-gradient(90deg, rgba(52, 152, 219, 0.12), rgba(231, 76, 60, 0.12));
+    border-radius: 12px;
+    padding: 1rem 1rem 1rem 1rem;
     margin-bottom: 1rem;
+    border-bottom: none;
+}
+
+.project-header h3 {
+    color: var(--primary-color);
+}
+
+.project-tech span {
+    background: linear-gradient(135deg, var(--secondary-color), #2980b9);
+    color: var(--white);
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.project-responsibilities {
+    border-top: 1px solid rgba(52, 73, 94, 0.12);
+    padding-top: 1.5rem;
 }
 
 .project-header h3 {
@@ -635,15 +711,15 @@ a:hover {
    ========================================== */
 
 .education {
-    padding: 80px 20px;
+    padding: clamp(40px, 10vw, 80px) clamp(1rem, 3vw, 2rem);
     background-color: var(--light-bg);
 }
 
 .education-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 800px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: clamp(1.5rem, 2.5vw, 2rem);
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -682,14 +758,14 @@ a:hover {
    ========================================== */
 
 .hobbies {
-    padding: 80px 20px;
+    padding: clamp(40px, 10vw, 80px) clamp(1rem, 3vw, 2rem);
     background-color: var(--white);
 }
 
 .hobbies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: clamp(1.5rem, 2.5vw, 2rem);
     max-width: 1000px;
     margin: 0 auto;
 }
@@ -728,7 +804,7 @@ a:hover {
    ========================================== */
 
 .contact {
-    padding: 80px 20px;
+    padding: clamp(40px, 10vw, 80px) clamp(1rem, 3vw, 2rem);
     background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
     color: var(--white);
 }
@@ -740,14 +816,14 @@ a:hover {
 
 .contact-info {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: clamp(1rem, 2vw, 2rem);
 }
 
 .contact-item {
     display: flex;
-    gap: 1.5rem;
-    padding: 1.5rem;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    padding: clamp(1rem, 2vw, 1.5rem);
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     backdrop-filter: blur(10px);
@@ -831,11 +907,33 @@ a:hover {
         box-shadow: 0 12px 24px rgba(37, 211, 102, 0.3);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
         text-decoration: none;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .whatsapp-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 16px 28px rgba(37, 211, 102, 0.35);
+    }
+
+    @media (max-width: 768px) {
+        .whatsapp-btn {
+            bottom: 80px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .whatsapp-btn {
+            bottom: 75px;
+            right: 15px;
+            width: 48px;
+            height: 48px;
+            font-size: 1.1rem;
+        }
     }
 
 .go-top-btn {
@@ -856,6 +954,8 @@ a:hover {
     z-index: 999;
     transition: var(--transition);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .go-top-btn:hover {
@@ -905,6 +1005,8 @@ a:hover {
         z-index: 1000;
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
         transition: transform 0.2s ease, background-color 0.2s ease;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .assistant-btn:hover {
@@ -1022,6 +1124,8 @@ a:hover {
         border-radius: 999px;
         outline: none;
         font-size: 0.95rem;
+        -webkit-appearance: none;
+        appearance: none;
     }
 
     .assistant-input input:focus {
@@ -1034,21 +1138,70 @@ a:hover {
         font-size: 0.95rem;
     }
 
-    /* ==========================================
-       FOOTER
-       ========================================== */
+    @media (max-width: 768px) {
+        .assistant-panel {
+            width: 90%;
+            max-width: 340px;
+            right: 5%;
+            bottom: 90px;
+        }
+    }
 
-    .footer {
+    @media (max-width: 480px) {
+        .assistant-panel {
+            width: 85%;
+            max-width: 300px;
+            right: 7.5%;
+            bottom: 80px;
+            max-height: 400px;
+        }
+
+        .assistant-message {
+            font-size: 0.9rem;
+            padding: 0.75rem 0.9rem;
+        }
+
+        .assistant-input input {
+            font-size: 1rem;
+            padding: 0.8rem 0.9rem;
+        }
+    }
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+.footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 2rem clamp(1rem, 3vw, 2rem);
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+/* ==========================================
+   MEDIA QUERIES - TABLET & SMALL SCREENS
+   ========================================== */
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: clamp(1.5rem, 4.5vw, 2.2rem);
+    }
+
     h2 {
-        font-size: 2rem;
+        font-size: clamp(1.3rem, 3.5vw, 2rem);
+    }
+
+    .nav-brand {
+        font-size: 1.4rem;
     }
 
     .hamburger {
-        display: flex;
+        display: flex !important;
     }
 
     .nav-menu {
-        display: none;
+        display: none !important;
         flex-direction: column;
         position: absolute;
         top: 70px;
@@ -1057,10 +1210,11 @@ a:hover {
         background-color: var(--primary-color);
         padding: 1rem;
         gap: 0;
+        z-index: 999;
     }
 
     .nav-menu.active {
-        display: flex;
+        display: flex !important;
     }
 
     .nav-menu li {
@@ -1068,17 +1222,23 @@ a:hover {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .hero h1 {
-        font-size: 2.5rem;
+    .nav-menu a {
+        display: block;
+        padding: 0.75rem 0;
     }
 
-    .job-title {
-        font-size: 1.3rem;
+    .hero {
+        min-height: 70vh;
+        padding: clamp(40px, 8vw, 80px) clamp(1rem, 3vw, 2rem);
+    }
+
+    .hero h1 {
+        font-size: clamp(1.8rem, 5vw, 2.8rem);
     }
 
     .hero-buttons {
         flex-direction: column;
-        align-items: center;
+        gap: 1rem;
     }
 
     .hero-buttons .btn {
@@ -1088,6 +1248,7 @@ a:hover {
 
     .about-content {
         grid-template-columns: 1fr;
+        gap: clamp(1.5rem, 3vw, 2rem);
     }
 
     .experience-timeline::before {
@@ -1096,10 +1257,10 @@ a:hover {
 
     .timeline-item:nth-child(odd) .timeline-content,
     .timeline-item:nth-child(even) .timeline-content {
-        width: 100%;
+        width: calc(100% - 60px);
         margin-left: 60px !important;
         margin-right: 0 !important;
-        padding-left: 1.5rem !important;
+        padding-left: clamp(1rem, 2vw, 1.5rem) !important;
         padding-right: 0 !important;
         text-align: left !important;
     }
@@ -1108,61 +1269,221 @@ a:hover {
         left: 13px;
     }
 
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .container {
-        padding: 0 15px;
-    }
-
-    .hero {
-        padding: 60px 20px;
-        min-height: auto;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .job-title {
-        font-size: 1.1rem;
-    }
-
-    .skill-tags {
-        gap: 0.5rem;
+    .skill-category {
+        padding: clamp(1.25rem, 2.5vw, 2rem);
     }
 
     .skill-tag {
-        padding: 0.4rem 0.7rem;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        padding: 0.5rem 0.9rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
     .project-card {
-        padding: 1.5rem;
+        padding: clamp(1rem, 2vw, 1.25rem);
     }
 
     .contact-item {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
     }
 
     .contact-item i {
+        margin: 0 auto;
+    }
+
+    .assistant-panel {
+        width: 90%;
+        max-width: 340px;
+        right: 5%;
+        bottom: 90px;
+    }
+
+    .whatsapp-btn {
+        bottom: 80px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* ==========================================
+   MEDIA QUERIES - SMALL MOBILE (480px & below)
+   ========================================== */
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: clamp(1.3rem, 4vw, 1.8rem);
+    }
+
+    h2 {
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .container {
+        padding: 0 clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .hero {
+        min-height: auto;
+        padding: clamp(30px, 5vw, 60px) clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .hero h1 {
+        font-size: clamp(1.5rem, 3.5vw, 2rem);
+    }
+
+    .job-title {
+        font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .hero-buttons .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+        width: 100%;
+    }
+
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .about {
+        padding: clamp(30px, 5vw, 40px) clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .skills {
+        padding: clamp(30px, 5vw, 40px) clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .skill-category {
+        padding: clamp(1rem, 2vw, 1.25rem);
+    }
+
+    .skill-category h3 {
+        font-size: 1.15rem;
+    }
+
+    .skill-tag {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.7rem;
+    }
+
+    .projects {
+        padding: clamp(30px, 5vw, 40px) clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .project-card {
+        padding: clamp(1rem, 2vw, 1.25rem);
+    }
+
+    .education {
+        padding: clamp(30px, 5vw, 40px) clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .education-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .hobbies {
+        padding: clamp(30px, 5vw, 40px) clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .hobbies-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .contact {
+        padding: clamp(30px, 5vw, 40px) clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .contact-item {
+        flex-direction: column;
         text-align: center;
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+
+    .contact-item i {
+        font-size: 1.5rem;
+    }
+
+    .experience {
+        padding: clamp(30px, 5vw, 40px) clamp(0.75rem, 2vw, 1rem);
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        width: calc(100% - 45px);
+        margin-left: 45px !important;
+        padding-left: 1rem !important;
+        padding-right: 0 !important;
+    }
+
+    .timeline-marker {
+        left: 10px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .assistant-panel {
+        width: 85%;
+        max-width: 300px;
+        right: 7.5%;
+        bottom: 80px;
+        max-height: 400px;
+    }
+
+    .assistant-message {
+        font-size: 0.9rem;
+        padding: 0.75rem 0.9rem;
+    }
+
+    .whatsapp-btn {
+        bottom: 75px;
+        right: 15px;
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+    }
+
+    .go-top-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 25px;
+        right: 15px;
+        font-size: 1.1rem;
     }
 }
