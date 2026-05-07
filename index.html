@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manikandan Kunjaiyan - SDET Portfolio</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <img src="assets/images/logo.png" alt="Logo" class="loader-logo">
+            <p class="loader-text">Loading...</p>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -293,15 +301,20 @@
                         <i class="fas fa-envelope"></i>
                         <span>Email</span>
                     </a>
-                    <a href="https://linkedin.com" class="contact-method" target="_blank">
+                    <a href="https://linkedin.com" class="contact-method" target="_blank" rel="noopener">
                         <i class="fab fa-linkedin"></i>
                         <span>LinkedIn</span>
                     </a>
-                    <a href="https://github.com/maanik2019-qa5" class="contact-method" target="_blank">
+                    <a href="https://github.com/maanik2019-qa5" class="contact-method" target="_blank" rel="noopener">
                         <i class="fab fa-github"></i>
                         <span>GitHub</span>
                     </a>
+                    <a href="https://wa.me/919361323796?text=Hi%20Manikandan%2C%20I%20would%20like%20to%20chat%20about%20your%20profile." class="contact-method contact-whatsapp" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
                 </div>
+                <!-- Replace 919361323796 with your real WhatsApp number -->
             </div>
         </div>
     </section>
@@ -312,6 +325,42 @@
             <p>&copy; 2026 Manikandan Kunjaiyan. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Go to Top Button -->
+    <button id="goTopBtn" class="go-top-btn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- WhatsApp Chat Button -->
+    <a id="whatsappBtn" class="whatsapp-btn" href="https://wa.me/919361323796?text=Hi%20Manikandan%2C%20I%20would%20like%20to%20chat%20about%20your%20profile." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- AI Assistant -->
+    <button id="assistantBtn" class="assistant-btn" title="Open AI Assistant">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <div id="assistantPanel" class="assistant-panel" aria-hidden="true">
+        <div class="assistant-header">
+            <div class="assistant-header-left">
+                <a href="https://wa.me/919000000000?text=Hi%20Manikandan%2C%20I%20would%20like%20to%20chat%20about%20your%20profile." target="_blank" rel="noopener" class="assistant-whatsapp" title="Chat on WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <span>AI Assistant</span>
+            </div>
+            <button id="assistantClose" class="assistant-close" title="Close assistant">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="assistantMessages" class="assistant-messages">
+            <div class="assistant-message bot">Hello! Ask me about my profile, skills, projects, experience, education, or contact details.</div>
+        </div>
+        <div class="assistant-input">
+            <input id="assistantInput" type="text" placeholder="Type your question..." aria-label="Ask AI Assistant" />
+            <button id="assistantSend" class="btn btn-primary" type="button">Send</button>
+        </div>
+    </div>
 
     <script src="assets/js/script.js"></script>
 </body>
